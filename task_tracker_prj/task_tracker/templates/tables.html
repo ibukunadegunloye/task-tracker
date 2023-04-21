@@ -1,0 +1,56 @@
+<br><br>
+<h1 class="text-center">TASK TRACKER APP</h1>
+<br>
+<div class="container">
+  <div class="row">
+    {% include 'menu.html' %}
+    <div class="col-lg-9">
+      {% if all_tasks %}
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="bg-secondary">
+            <th>Task</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in all_tasks %}
+          <tr>
+            <td>{{ task.task }}</td>
+            <td>{{ task.description }}</td>
+            <td>{{ task.status }}</td>
+            <td>{{ task.due_date }}</td>
+            <td class="bg-info"><a href="{% url 'edit' task.pk %}" class="text-white">Update</a></td>
+            <td class="bg-danger"><a href="{% url 'delete' task.pk %}" class="text-white">Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>     
+    </div>
+
+      {% else %}
+      <table class="table table-bordered">
+        <thead>
+          <tr class="bg-secondary">
+            <th>Task</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <br><br><br><br>
+        <h5 class="text-center text-muted font-italic">NO TASK(S) CREATED</h5>
+      {% endif %}
+    </div>
+  </div>
+</div>
